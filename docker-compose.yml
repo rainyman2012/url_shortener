@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    generator:
+        build: ./GeneratorApp
+        volumes:
+            - ./GeneratorApp:/usr/src/app
+        ports:
+            - 5001:8000
+    restore:
+        build: ./RestoreApp
+        volumes:
+            - ./RestoreApp:/usr/src/app
+        ports:
+            - 5000:8000
+    client:
+        build: ./Client
+        volumes:
+            - ./Client:/usr/src/app
+        ports:
+            - 5002:3000
+    redis:
+        build: ./RedisStoreApp
+        container_name: redis
+        ports:
+            - 6379:6379
